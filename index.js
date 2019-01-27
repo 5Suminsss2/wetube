@@ -13,9 +13,17 @@ function handleHome(req, res) {
 
 }*/
 
-const handleHome = (req, res) => res.send("Hi from soomsosom!");
+const handleHome = (req, res) => res.send("Hi from ddd!");
 
 const handleProfile = (req, res) => res.send("U are on my profile");
+
+const betweenHome = (req, res, next) => {
+    console.log("I'm broken");
+    next();
+}
+
+
+app.use(betweenHome);
 
 app.get("/", handleHome);
 
