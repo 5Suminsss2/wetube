@@ -11,6 +11,8 @@ import routes from "./routes";
 
 const app = express();
 
+app.set("view engine", "pug");
+
 // middelware
 app.use(cookieParser());
 app.use(bodyParser.json({ extended: true }));
