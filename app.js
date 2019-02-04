@@ -11,12 +11,13 @@ import routes from "./routes";
 
 const app = express();
 
-
+// middelware
 app.use(cookieParser());
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(morgan("dev"));
+
 
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);

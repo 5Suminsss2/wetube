@@ -12,8 +12,8 @@ const SEARCH = "/search";
 const USERS = "/users";
 const USERS_DETAILS = "/:id";
 // 둘을 합치면    /users/1 
-const EDIT_PRIFOIE = "/edit-profile";
-const CHANGE_PASSWORD = "/change-password";
+const EDIT_PRIFOIE = "/:id/edit-profile";
+const CHANGE_PASSWORD = "/:id/change-password";
 
 
 //Videos
