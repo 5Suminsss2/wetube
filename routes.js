@@ -12,8 +12,8 @@ const SEARCH = "/search";
 const USERS = "/users";
 const USERS_DETAILS = "/:id";
 // 둘을 합치면    /users/1 
-const EDIT_PRIFOIE = "/:id/edit-profile";
-const CHANGE_PASSWORD = "/:id/change-password";
+const EDIT_PROFILE = "/edit-profile";
+const CHANGE_PASSWORD = "/change-password";
 
 
 //Videos
@@ -33,7 +33,7 @@ const routes = {
     search: SEARCH,
     users: USERS,
     userDetail: USERS_DETAILS,
-    editProfile: EDIT_PRIFOIE,
+    editProfile: EDIT_PROFILE,
     changePassword: CHANGE_PASSWORD,
     videos: VIDEOS,
     upload: UPLOAD,
