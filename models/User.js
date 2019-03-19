@@ -6,10 +6,30 @@ const UserSchema = new mongoose.Schema({
   email: String,
   avatarUrl: String,
   facebookId: Number,
-  githubId: Number
+  githubId: Number,
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Comment"
+    }
+  ],
+  videos: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Video"
+    }
+  ]
 });
 
 UserSchema.plugin(passportLocalMmongoose, { usernameField: "email" });
+
+UserSchema.statics.serializeUser = () => (user, cb) => cb(null, user.id);
+
+// eslint-disable-next-line func-names
+UserSchema.statics.deserializeUser = function() {
+  const self = this;
+  return (id, cb) => self.findById(id, cb);
+};
 
 const model = mongoose.model("User", UserSchema);
 
