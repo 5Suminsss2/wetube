@@ -7,6 +7,13 @@ const currentTime = document.getElementById("currentTime");
 const totalTime = document.getElementById("totalTime");
 const volumeRange = document.getElementById("jsVolume");
 
+const registerView = () => {
+  const videoId = window.location.href.split("/videos/")[1];
+  fetch(`/api/${videoId}/view`, {
+    method: "POST"
+  });
+};
+
 function handlePlayClick() {
   if (videoPlayer.paused) {
     videoPlayer.play();
@@ -23,7 +30,7 @@ function handleVolumeClick() {
     volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
     volumeRange.value = videoPlayer.volume;
   } else {
-    volumeRange.volume = 0;
+    volumeRange.value = 0;
     videoPlayer.muted = true;
     volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
   }
@@ -36,8 +43,8 @@ function exitFullScreen() {
     document.exitFullscreen();
   } else if (document.mozCancelFullScreen) {
     document.mozCancelFullScreen();
-  } else if (document.webkitFullscreen) {
-    document.webkitFullscreen();
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
   } else if (document.msExitFullscreen) {
     document.msExitFullscreen();
   }
@@ -70,7 +77,7 @@ const formatDate = seconds => {
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-  if (totalSeconds < 10) {
+  if (seconds < 10) {
     totalSeconds = `0${totalSeconds}`;
   }
   return `${hours}:${minutes}:${totalSeconds}`;
@@ -87,6 +94,7 @@ function setTotalTime() {
 }
 
 function handleEnded() {
+  registerView();
   videoPlayer.currentTime = 0;
   playBtn.innerHTML = '<i class="fas fa-play"></i>';
 }
